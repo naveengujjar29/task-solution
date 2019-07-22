@@ -1,16 +1,19 @@
 package com.task.solution.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "Magazine")
 public class Magazine {
@@ -26,9 +29,9 @@ public class Magazine {
 	private int year;
 
 	@Column(name = "Type")
-	private String type;
+	private String magazineType;
 
-	@ManyToMany(mappedBy = "magazines")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "magazines")
 	private Set<Author> authors = new HashSet<>();
 
 	public int getMagazineId() {
@@ -55,12 +58,12 @@ public class Magazine {
 		this.year = year;
 	}
 
-	public String getType() {
-		return type;
+	public String getMagazineType() {
+		return magazineType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setMagazineType(String magazineType) {
+		this.magazineType = magazineType;
 	}
 
 	public Set<Author> getAuthors() {

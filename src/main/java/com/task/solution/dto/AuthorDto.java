@@ -1,17 +1,24 @@
 package com.task.solution.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AuthorDto {
+
+public class AuthorDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private int authorId;
 
 	private String authorName;
-
+	
 	private List<BookDto> books;
 
 	private List<MagazineDto> magazines;
-
+	
 	private List<ComicDto> comics;
 
 	public int getAuthorId() {

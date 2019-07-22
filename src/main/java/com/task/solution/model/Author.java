@@ -6,12 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "Author")
 public class Author {
@@ -23,15 +27,15 @@ public class Author {
 	@Column(name = "AuthorName")
 	private String authorName;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "books_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookId"))
 	private List<Book> books = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "comics_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "comic_id", referencedColumnName = "comicId"))
 	private List<Comic> comics = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "magazines_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "magazine_id", referencedColumnName = "magazineId"))
 	private List<Magazine> magazines = new ArrayList<>();
 

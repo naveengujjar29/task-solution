@@ -1,11 +1,12 @@
 package com.task.solution.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Book {
 	@Column(name = "Genre")
 	private String genre;
 
-	@ManyToMany(mappedBy = "books")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
 	private Set<Author> authors = new HashSet<>();
 
 	public int getBookId() {
@@ -68,6 +69,11 @@ public class Book {
 
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
+	}
+
+	public void addAuthor(Author author) {
+		this.authors.add(author);
+		author.getBooks().add(this);
 	}
 
 }
