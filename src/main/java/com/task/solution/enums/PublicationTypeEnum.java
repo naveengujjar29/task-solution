@@ -2,7 +2,7 @@ package com.task.solution.enums;
 
 public enum PublicationTypeEnum {
 
-	MAGAZINES("magazines"), COMICS("comics"), BOOKS("books");
+	magazines("magazines"), comics("comics"), books("books");
 
 	private String type;
 
@@ -13,5 +13,5 @@ public enum PublicationTypeEnum {
 	public String getType() {
 		return type;
 	};
-	
+
 }

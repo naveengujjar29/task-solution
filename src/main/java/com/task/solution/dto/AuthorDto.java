@@ -1,9 +1,16 @@
 package com.task.solution.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "authorId")
+@JsonInclude(Include.NON_NULL)
 public class AuthorDto implements Serializable {
 
 	/**
@@ -14,12 +21,15 @@ public class AuthorDto implements Serializable {
 	private int authorId;
 
 	private String authorName;
-	
-	private List<BookDto> books;
 
-	private List<MagazineDto> magazines;
-	
-	private List<ComicDto> comics;
+	@JsonIgnoreProperties("authors")
+	private Set<BookDto> books = new HashSet<>();
+
+	@JsonIgnoreProperties("authors")
+	private Set<MagazineDto> magazines = new HashSet<>();
+
+	@JsonIgnoreProperties("authors")
+	private Set<ComicDto> comics = new HashSet<>();;
 
 	public int getAuthorId() {
 		return authorId;
@@ -37,27 +47,27 @@ public class AuthorDto implements Serializable {
 		this.authorName = authorName;
 	}
 
-	public List<BookDto> getBooks() {
+	public Set<BookDto> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<BookDto> books) {
+	public void setBooks(Set<BookDto> books) {
 		this.books = books;
 	}
 
-	public List<MagazineDto> getMagazines() {
+	public Set<MagazineDto> getMagazines() {
 		return magazines;
 	}
 
-	public void setMagazines(List<MagazineDto> magazines) {
+	public void setMagazines(Set<MagazineDto> magazines) {
 		this.magazines = magazines;
 	}
 
-	public List<ComicDto> getComics() {
+	public Set<ComicDto> getComics() {
 		return comics;
 	}
 
-	public void setComics(List<ComicDto> comics) {
+	public void setComics(Set<ComicDto> comics) {
 		this.comics = comics;
 	}
 

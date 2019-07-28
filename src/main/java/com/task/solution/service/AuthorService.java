@@ -15,4 +15,6 @@ public interface AuthorService {
 
 	public void deleteAuthor(int authorId) throws EntityDoesNotExistException;
 
+	public AuthorDto updateAuthorDetails(int authorId, AuthorDto authorDto) throws EntityDoesNotExistException;
+
 }

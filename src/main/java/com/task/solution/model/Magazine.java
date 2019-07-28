@@ -1,5 +1,6 @@
 package com.task.solution.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,10 +14,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "Magazine")
-public class Magazine {
+public class Magazine implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +38,9 @@ public class Magazine {
 
 	@Column(name = "Type")
 	private String magazineType;
-
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "magazines")
+	
+	@JsonIgnoreProperties("magazines")
+	@ManyToMany(fetch = FetchType.LAZY,  mappedBy = "magazines")
 	private Set<Author> authors = new HashSet<>();
 
 	public int getMagazineId() {

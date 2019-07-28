@@ -3,13 +3,12 @@ package com.task.solution.dto;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.task.solution.model.Author;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "magazineId")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "magazineId")
+@JsonInclude(Include.NON_NULL)
 public class MagazineDto {
 
 	private int magazineId;
@@ -20,7 +19,7 @@ public class MagazineDto {
 
 	private String magazineType;
 
-	@JsonBackReference
+	@JsonIgnoreProperties("magazines")
 	private Set<AuthorDto> authors = new HashSet<>();
 
 	public int getMagazineId() {

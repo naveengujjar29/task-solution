@@ -6,20 +6,24 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "bookId")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "bookId")
+@JsonInclude(Include.NON_NULL)
 public class BookDto {
 
 	private int bookId;
 
 	private String title;
-	
+
 	private int year;
 
 	private String genre;
-
-	@JsonBackReference
+	
+	@JsonIgnoreProperties("books")
 	private Set<AuthorDto> authors = new HashSet<>();
 
 	public int getBookId() {
@@ -54,7 +58,6 @@ public class BookDto {
 		this.year = year;
 	}
 
-	@JsonIgnore
 	public Set<AuthorDto> getAuthors() {
 		return authors;
 	}

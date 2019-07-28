@@ -1,5 +1,6 @@
 package com.task.solution.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +13,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name = "Book")
-public class Book {
+@JsonIgnoreProperties("books")
+public class Book implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +37,7 @@ public class Book {
 	@Column(name = "Genre")
 	private String genre;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
+	@ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
 	private Set<Author> authors = new HashSet<>();
 
 	public int getBookId() {

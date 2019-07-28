@@ -10,6 +10,7 @@ public class ObjectConverter implements Converter {
 
 	@Override
 	public Object convert(Object object, Class clazz) {
+		this.mapper.getConfiguration().setAmbiguityIgnored(true);
 		return this.mapper.map(object, clazz);
 	}
 

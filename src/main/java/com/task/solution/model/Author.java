@@ -1,7 +1,10 @@
 package com.task.solution.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,10 +18,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "authorId")
 @Entity(name = "Author")
-public class Author {
+@JsonIgnoreProperties("authors")
+public class Author implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +38,20 @@ public class Author {
 	@Column(name = "AuthorName")
 	private String authorName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonIgnoreProperties("authors")
+	@ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "books_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookId"))
-	private List<Book> books = new ArrayList<>();
+	private Set<Book> books = new HashSet<>();
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@JsonIgnoreProperties("authors")
+	@ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "comics_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "comic_id", referencedColumnName = "comicId"))
-	private List<Comic> comics = new ArrayList<>();
+	private Set<Comic> comics = new HashSet<>();
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@JsonIgnoreProperties("authors")
+	@ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "magazines_authors", joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"), inverseJoinColumns = @JoinColumn(name = "magazine_id", referencedColumnName = "magazineId"))
-	private List<Magazine> magazines = new ArrayList<>();
+	private Set<Magazine> magazines = new HashSet<>();
 
 	public int getAuthorId() {
 		return authorId;
@@ -55,27 +69,27 @@ public class Author {
 		this.authorName = authorName;
 	}
 
-	public List<Book> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
 
-	public List<Comic> getComics() {
+	public Set<Comic> getComics() {
 		return comics;
 	}
 
-	public void setComics(List<Comic> comics) {
+	public void setComics(Set<Comic> comics) {
 		this.comics = comics;
 	}
 
-	public List<Magazine> getMagazines() {
+	public Set<Magazine> getMagazines() {
 		return magazines;
 	}
 
-	public void setMagazines(List<Magazine> magazines) {
+	public void setMagazines(Set<Magazine> magazines) {
 		this.magazines = magazines;
 	}
 
@@ -108,4 +122,27 @@ public class Author {
 		this.magazines.remove(magazine);
 		magazine.getAuthors().remove(this);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + authorId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Author other = (Author) obj;
+		if (authorId != other.authorId)
+			return false;
+		return true;
+	}
+
 }

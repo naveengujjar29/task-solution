@@ -1,9 +1,9 @@
 package com.task.solution.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name = "Comic")
-public class Comic {
+public class Comic implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +34,9 @@ public class Comic {
 
 	@Column(name = "Hero")
 	private String hero;
-
-	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "comics")
+	
+	@JsonIgnoreProperties("comics")
+	@ManyToMany( mappedBy = "comics", fetch=FetchType.LAZY)
 	private Set<Author> authors = new HashSet<>();
 
 	public int getComicId() {
