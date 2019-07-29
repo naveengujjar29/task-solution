@@ -2,7 +2,7 @@
 
 This repository contains the solution with code changes of author book relationship task.
 
-You can download run the task-solution-0.0.1-SNAPSHOT.jar jar file and run the project using java -jar task-solution-0.0.1-SNAPSHOT.jar command. This will run on 8085 port and you can access the API documentation on http://localhost:8085/swagger-ui.html#/ link and can invoke the related APIs.
+You can download task-solution-0.0.1-SNAPSHOT.jar jar file available in src package and run the project using java -jar task-solution-0.0.1-SNAPSHOT.jar command. This will run on 8085 port and you can access the API documentation on http://localhost:8085/swagger-ui.html#/ link and can invoke the related APIs.
 
 ### Technologies used
   - Spring Boot with Rest API.
