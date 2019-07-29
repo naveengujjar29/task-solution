@@ -19,7 +19,8 @@ You can download task-solution-0.0.1-SNAPSHOT.jar jar file available in src pack
    For API documentation, please refer http://localhost:8085/swagger-ui.html#/ link
    
 
-   
+  ### API Examples Screenshot from project
+  ![](task-solution/src/main/resources/project-images/author%20creation.png?raw=true "Optional Title")
   
  
   
