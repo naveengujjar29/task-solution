@@ -17,6 +17,9 @@ public class TaskSolutionApplication {
 		SpringApplication.run(TaskSolutionApplication.class, args);
 	}
 
+	/** CORS filter configuration for Angular Web UI access.
+	 * @return CORS filter bean configuration.
+	 */
 	@Bean
 	public CorsFilter corsFilter() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

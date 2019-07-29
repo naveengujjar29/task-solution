@@ -52,6 +52,9 @@ public class AuthorController {
 		return new ResponseEntity<>(authorDto2, HttpStatus.OK);
 	}
 	
+	/** Get List of Authors.
+	 * @return list of authors.
+	 */
 	@ApiOperation(value="Get the list of authors containg publication entities.", response=Iterable.class)
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuthorDto>> getAuthors() {
@@ -59,6 +62,11 @@ public class AuthorController {
 		return new ResponseEntity<List<AuthorDto>>(authorsList, HttpStatus.OK);
 	}
 	
+	/** Get single record of author for specified author Id.
+	 * @param authorId
+	 * @return
+	 * @throws EntityDoesNotExistException
+	 */
 	@ApiOperation(value="Get the author record for the specified author id", response=AuthorDto.class)
 	@GetMapping(value = "/{authorId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthorDto> getAuthorsById(@PathVariable int authorId) throws EntityDoesNotExistException {
@@ -70,6 +78,11 @@ public class AuthorController {
 		}
 	}
 	
+	/** Update the Author detail for specified Author Id.
+	 * @param authorId
+	 * @param authorDto
+	 * @return updated author record.
+	 */
 	@ApiOperation(value="Update the author record for the specified author id.", response=AuthorDto.class)
 	@PatchMapping(value = "/{authorId}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthorDto> updatedAuthorDetails(@PathVariable Integer authorId,
@@ -83,6 +96,10 @@ public class AuthorController {
 		}
 	}
 	
+	/** Delete the author record for the specified author Id.
+	 * @param authorId
+	 * @return No Content if author is successfully deleted.
+	 */
 	@ApiOperation(value="Delete the author record for the specified author id", response=Void.class)
 	@ApiResponses(value =  {
 			@ApiResponse(code = 204, message ="Succesfully deleted the author id"),

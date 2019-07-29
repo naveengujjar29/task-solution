@@ -1,5 +1,10 @@
 package com.task.solution.enums;
 
+/**
+ * Enum of various Publication type supported.
+ * @author Naveen Kumar
+ *
+ */
 public enum PublicationTypeEnum {
 
 	magazines("magazines"), comics("comics"), books("books");

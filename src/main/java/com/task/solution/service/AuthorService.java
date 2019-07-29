@@ -5,6 +5,11 @@ import java.util.List;
 import com.task.solution.dto.AuthorDto;
 import com.task.solution.exception.EntityDoesNotExistException;
 
+/**
+ * Service class for providing CRUD operation signature for author entity.
+ * @author Naveen Kumar
+ *
+ */
 public interface AuthorService {
 
 	public AuthorDto createAuthor(AuthorDto authorDto);

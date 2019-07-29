@@ -28,13 +28,16 @@ import com.task.solution.exception.PublicationTypeDoesNotSupportedException;
 import com.task.solution.service.PublicationService;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+/**
+ * Controller class to manage different type of publications record.
+ * @author Naveen Kumar
+ *
+ */
 @Api(value="Publication Controller", description="Controller class to manage publications types(books, comics, magazines)  record")
 @RestController
 @RequestMapping("/publications")
@@ -45,6 +48,11 @@ public class PublicationController {
 	@Autowired
 	Map<String, PublicationService> publicationService;
 	
+	/** Create the publication record for the specified publication type.
+	 * @param publicationType
+	 * @param request
+	 * @return created publication record.
+	 */
 	@ApiOperation(value="To create the record for the specified publication type.")
 	@ApiParam(name="type", value="Type of publications i.e.  books, comics, magazines")
 	@PostMapping("/{publicationType}")
@@ -61,6 +69,16 @@ public class PublicationController {
 		}
 	}
 	
+	/** Get the list of publication based on specified publication type. User can also provide various filter option
+	 * on different parameters for the specified publication type.
+	 * @param publicationType
+	 * @param authorName
+	 * @param year
+	 * @param genre
+	 * @param hero
+	 * @param magazineType
+	 * @return list of filtered records.
+	 */
 	@ApiOperation(value="Fetch the list of records for the specified publication type")
 	@GetMapping(value = "/{publicationType}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonNode> getPublications(@PathVariable PublicationTypeEnum publicationType,
@@ -80,6 +98,11 @@ public class PublicationController {
 		}
 	}
 	
+	/** Get a single record of specified Id for publication type.
+	 * @param publicationType
+	 * @param id
+	 * @return
+	 */
 	@ApiOperation(value="Fetch the single publication record for the specified publication type with id.")
 	@GetMapping(value = "/{publicationType}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonNode> getPublicationsById(@PathVariable PublicationTypeEnum publicationType, @PathVariable Integer id) {
@@ -90,15 +113,27 @@ public class PublicationController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
+	/** Update the publication record for the specified Id and type.
+	 * @param publicationType
+	 * @param id
+	 * @param jsonNode
+	 * @return
+	 */
 	@ApiOperation("Update the publication record for the specified publication type with id.")
 	@PatchMapping(value = "/{publicationType}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<JsonNode> getPublicationsById(@PathVariable PublicationTypeEnum publicationType, @PathVariable Integer id,
+	public ResponseEntity<JsonNode> updatedPublicationById(@PathVariable PublicationTypeEnum publicationType, @PathVariable Integer id,
 			@RequestBody JsonNode jsonNode) {
 		Object object = this.publicationService.get(publicationType.getType()).updatePublication(id, jsonNode);
 		JsonNode returnObject = this.objectMapper.convertValue(object, JsonNode.class);
 		return new ResponseEntity<JsonNode>(returnObject, HttpStatus.OK);
 	}
 	
+	/** Delete the publication record.
+	 * @param publicationType
+	 * @param id
+	 * @param jsonNode
+	 * @return
+	 */
 	@ApiOperation("Delete the publication record for the specified publication type with id.")
 	@DeleteMapping(value = "/{publicationType}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> deletePublicationById(@PathVariable PublicationTypeEnum publicationType, @PathVariable Integer id,

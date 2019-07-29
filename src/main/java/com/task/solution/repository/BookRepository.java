@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.task.solution.model.Book;
 
+/**
+ * Data JPA class for Book model.
+ * @author Naveen Kumar
+ *
+ */
 @Transactional
 @Repository
 public interface BookRepository extends CrudRepository<Book, Integer> {

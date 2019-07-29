@@ -7,7 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "magazineId")
+/**
+ * DTO class for magazine.
+ * @author Naveen Kumar
+ *
+ */
 @JsonInclude(Include.NON_NULL)
 public class MagazineDto {
 

@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.task.solution.model.Comic;
 
+/**
+ * Data JPA repository for Comic entity.
+ * @author Naveen Kumar
+ *
+ */
 @Transactional
 @Repository
 public interface ComicRepository extends CrudRepository<Comic, Integer> {

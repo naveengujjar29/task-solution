@@ -8,7 +8,7 @@ import com.task.solution.exception.EntityDoesNotExistException;
 import com.task.solution.exception.PublicationTypeDoesNotSupportedException;
 
 /**
- * Interface for publication types.
+ * Interface for providing various method signature on publication types.
  * 
  * @author Naveen Kumar
  *
