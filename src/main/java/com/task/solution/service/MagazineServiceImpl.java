@@ -98,7 +98,13 @@ public class MagazineServiceImpl implements PublicationService {
 			existingSavedMagazine.setYear(updatedMagazineValues.getYear());
 		}
 		if (!Objects.isNull(updatedMagazineValues.getAuthors())) {
-			existingSavedMagazine.setAuthors(updatedMagazineValues.getAuthors());
+			for (Author temp : updatedMagazineValues.getAuthors()) {
+				if (temp.getAuthorId() != 0) {
+					Author author = this.authorRepository.findById(temp.getAuthorId()).get();
+					updatedMagazineValues.getAuthors().add(author);
+					author.getMagazines().add(updatedMagazineValues);
+				}
+			}
 		}
 		Magazine savedObject = this.magazineRepository.save(existingSavedMagazine);
 		return savedObject;

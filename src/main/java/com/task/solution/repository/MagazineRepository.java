@@ -2,11 +2,11 @@ package com.task.solution.repository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.task.solution.model.Magazine;
 
-public interface MagazineRepository extends CrudRepository<Magazine, Integer> {
+public interface MagazineRepository extends JpaRepository<Magazine, Integer> {
 
 	public List<Magazine> findAll();
 

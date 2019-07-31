@@ -98,9 +98,15 @@ public class BooksServiceImpl implements PublicationService {
 			existingSavedBook.setYear(updatedBook.getYear());
 		}
 		if (!Objects.isNull(updatedBook.getAuthors())) {
-			existingSavedBook.setAuthors(updatedBook.getAuthors());
+			for (Author temp : updatedBook.getAuthors()) {
+				if (temp.getAuthorId() != 0) {
+					Author author = this.authorRepository.findById(temp.getAuthorId()).get();
+					existingSavedBook.getAuthors().add(author);
+					author.getBooks().add(existingSavedBook);
+				}
+			}
 		}
-		Book savedObject = this.bookRepository.save(existingSavedBook);
+		Book savedObject = this.bookRepository.saveAndFlush(existingSavedBook);
 		return savedObject;
 	}
 
