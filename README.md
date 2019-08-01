@@ -19,6 +19,8 @@ You can download task-solution-0.0.1-SNAPSHOT.jar jar file available in src pack
    For API documentation, please refer http://localhost:8085/swagger-ui.html#/ link
    
   *Angular Web UI project is also bundled with this jar but functionality is not complete. You can see the authors list after creation from API on http://localhost:8085/index.html*
+  **Web UI screenshot from project ( As of now - author list functionality is only available in Web UI. Work in progress for other     functionalities in Web UI.)**
+  ![](https://github.com/naveengujjar29/task-solution/blob/master/src/main/resources/project-images/Web%20UI.PNG?raw=true)
   
   ### API Examples Screenshot of project
   #### Project run
