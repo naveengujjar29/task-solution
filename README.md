@@ -17,11 +17,7 @@ You can download task-solution-0.0.1-SNAPSHOT.jar jar file available in src pack
    
   ### API Documentation
    For API documentation, please refer http://localhost:8085/swagger-ui.html#/ link
-   
-  *Angular Web UI project is also bundled with this jar but functionality is not complete. You can see the authors list after creation from API on http://localhost:8085/webui/index.html*
-  **Web UI screenshot from project ( As of now - author list functionality is only available in Web UI. Work in progress for other     functionalities in Web UI.)**
-  ![](https://github.com/naveengujjar29/task-solution/blob/master/src/main/resources/project-images/Web%20UI.PNG?raw=true)
-  
+    
   ### API Examples Screenshot of project
   #### Project run
   ![](https://github.com/naveengujjar29/task-solution/blob/master/src/main/resources/project-images/project%20run.PNG?raw=true "Optional Title")
@@ -44,5 +40,15 @@ You can download task-solution-0.0.1-SNAPSHOT.jar jar file available in src pack
   #### Swagger API Doucmentation
   ![](https://github.com/naveengujjar29/task-solution/blob/master/src/main/resources/project-images/swagger-api-documentation.PNG?raw=true "Swagger API")
   
- 
+  ### Web UI Project Description
+    *Angular Web UI project is also bundled with this jar and can be accessed on http://localhost:8085/webui/index.html URI. Listing and addition of book and authors functionality is only working in Web UI developed using angular 7. *
+  **Web UI screenshot from project ( As of now - author, book listing and addition functionality is only available in Web UI. 
+   Work in progress for other functionalities in Web UI.)**
+   
+  ![](./src/main/resources/project-images/web-ui-landing-page.PNG?raw=true)
+  ![](./src/main/resources/project-images/Addition-of-author.PNG?raw=true)
+  ![](./src/main/resources/project-images/AUthor-listing-after-addition.PNG?raw=true)
+  ![](./src/main/resources/project-images/Book%20Addition.PNG?raw=true)
+  ![](./src/main/resources/project-images/Book%20Listing.PNG?raw=true)
+  
   
