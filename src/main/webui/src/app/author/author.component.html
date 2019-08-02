@@ -1,14 +1,14 @@
 <div class="row">
+  <div style="position: absolute; right: 50px; margin-top: 5px">
+    <button mat-raised-button color="primary" (click) = "addAuthor()">Add Author</button>
+  </div>
   <div *ngFor="let author of authorData">
     <mat-card class="mat-elevation-z4">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Author</mat-card-title>
-        <mat-card-subtitle>Author ID: {{author.authorId}}</mat-card-subtitle>
+        <mat-card-title>{{author.authorName}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-          <b> Author Name: </b> {{author.authorName}}
-          <br/>
           <img src="assets/images/books.png" alt="Books" title="Books" />
           <span *ngFor="let book of author.books">
             {{book.title}}
@@ -25,7 +25,8 @@
           </span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-stroked-button color="warn">Delete</button>
+        <button mat-raised-button color="warn" (click)="deleteAuthor(author.authorId)">Delete</button>
+        <button mat-raised-button color="accent" (click)="deleteAuthor(author.authorId)">Update</button>
       </mat-card-actions>
     </mat-card>
   </div>

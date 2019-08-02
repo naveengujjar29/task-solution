@@ -1,0 +1,10 @@
+<form class="adduser-form">
+  <mat-form-field style=" width: 100%">
+    <input matInput placeholder="Author Name" name="authorName" [(ngModel)]="author.authorName">
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="addAuthor()">Add</button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+  </div>
+</form>

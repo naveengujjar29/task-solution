@@ -99,7 +99,13 @@ public class ComicsServiceImpl implements PublicationService {
 			existingSavedComic.setYear(updatedComicValues.getYear());
 		}
 		if (!Objects.isNull(updatedComicValues.getAuthors())) {
-			existingSavedComic.setAuthors(updatedComicValues.getAuthors());
+			for (Author temp : updatedComicValues.getAuthors()) {
+				if (temp.getAuthorId() != 0) {
+					Author author = this.authorRepository.findById(temp.getAuthorId()).get();
+					updatedComicValues.getAuthors().add(author);
+					author.getComics().add(updatedComicValues);
+				}
+			}
 		}
 		Comic savedObject = this.comicRepository.save(existingSavedComic);
 		return savedObject;

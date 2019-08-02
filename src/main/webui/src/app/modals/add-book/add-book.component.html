@@ -1,0 +1,48 @@
+<form class="addbook-form">
+  <mat-form-field style=" width: 100%">
+    <input matInput placeholder="Title" name="title" [(ngModel)]="book.title">
+  </mat-form-field>
+  <mat-form-field style=" width: 100%">
+    <input matInput placeholder="Year" name="year" [(ngModel)]="book.year">
+  </mat-form-field>
+  <mat-form-field style=" width: 100%">
+    <mat-select placeholder="Genre" name="genre" [(ngModel)]="book.genre">
+      <mat-option value="novel">Novel</mat-option>
+      <mat-option value="drama">Drama</mat-option>
+      <mat-option value="detective">Detective</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let author of selectedAuthors"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(author)">
+          {{author}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Select Authors"
+          #fruitInput
+          name="authorName"
+          [(formControl)]="fruitCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let author of allAuthor" [value]="author.authorId">
+          {{author.authorName}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="addBook()">Add</button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+  </div>
+</form>

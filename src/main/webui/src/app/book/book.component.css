@@ -1,0 +1,14 @@
+span  {
+  margin-left: 20px;
+}
+
+.mat-card {
+  width: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: auto;
+}
+
+.mat-card .mat-card-content{
+  margin: 0px 0px 0px !important;
+}

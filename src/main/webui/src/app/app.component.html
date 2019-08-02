@@ -7,20 +7,20 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" style="cursor: pointer">Authors<span
+      <li class="nav-item">
+        <a [routerLink]="['']" routerLinkActive="active" class="nav-link">Authors<span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" style="cursor: pointer">Add Book<span
+      <li class="nav-item">
+        <a [routerLink]="['/books']" routerLinkActive="active" class="nav-link" style="cursor: pointer">Books<span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" style="cursor: pointer">Add Comic<span
+      <li class="nav-item">
+        <a [routerLink]="['/comics']" routerLinkActive="active" class="nav-link" style="cursor: pointer">Comics<span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" style="cursor: pointer">Add Magazine<span
+      <li class="nav-item">
+        <a [routerLink]="['/magazines']" routerLinkActive="active" class="nav-link" style="cursor: pointer">Magazines<span
             class="sr-only">(current)</span></a>
       </li>
     </ul>

@@ -11,8 +11,17 @@ export class Book {
   public title: title;
   public year: year;
   public genre: genre;
-  public authors: Author[];
+  public authors: Author[] = new Array();
 
+  public static fromJSON(json: any): Book {
+    const bookModel = new Book();
+    bookModel.bookId = json.bookId;
+    bookModel.title = json.title;
+    bookModel.year = json.year;
+    bookModel.genre = json.genre;
+    bookModel.authors = json.authors;
+    return bookModel;
+  }
 
 
 }
